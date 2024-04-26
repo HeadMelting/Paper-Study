@@ -40,12 +40,14 @@ $\phi_i$는 인공신경망의 i번째 레이어를 의미하고, 위 신경망�
 ## Initialization
 > (4)에서 언급한 모델 구조를 보면, 기본적으로 Fully connected layer의 형태로, 가중합에 활성화 함수를 통과시킨 꼴이다. `가중치(W)`를 **Uniform distribution**으로 초기화하고, `입력(X)`가 **arcsine distribution**일때, `가중합` ($\rm w^T\rm x$)는 **Normal distribution**이 된다고 증명함. 마지막으로 정규 분포를 따르는 가중합을 sin함수의 입력으로 넣을 경우, `출력`$\sin(\rm w^T \rm x)$은 **arcsine distribution**이 되어, 입력과 출력의 분포 형태가 동일하게 된다.
 
-더 자세히 다루기 전에, `supplement`에서 제시한 위 가정의 증명부터 알아보자.
+#### 더 자세히 다루기 전에, `supplement`에서 제시한 위 가정의 증명부터 알아보자.
+----
 
-**Definition 1.1** *The arcsine distribution is defined for a random variable* $X$ *by its cumulative distribution function (CDF)* $F_{\rm X}$ *such as:*
+#### Definition 1.1
+*The arcsine distribution is defined for a random variable* $X$ *by its cumulative distribution function (CDF)* $F_{\rm X}$ *such as:*
 $$X \thicksim \rm{Arcsin}(a,b), \rm{with} ~\it{CDF}:~F_{X}(x) = \frac 2 \pi \arcsin(\sqrt\frac {x-a} {b-a}), \rm{with} ~ b > a$$
 
-**Lemma 1.1**
+#### Lemma 1.1
 *Given* $X \thicksim U(-1, 1)$ *and* $Y = \sin(\frac \pi 2 X)$ *we have* $Y \thicksim \rm{Arcsin}(-1, 1)$
 
 ***Proof***. $X \thicksim U(-1, 1)$ 인 x에 대해서, [-1, 1] 구간에서 확률 밀도 함수(pdf) $\cal f(x) = \frac 1 2$로 정의된다. 따라서, 누적 확률 분포 함수가 $F_{\rm X}(x) = \Bbb{P}(\rm X \leq x) = \frac 1 2 x + \frac 1 2$ 임은 쉽게 알 수 있다. <br>
@@ -58,14 +60,14 @@ $$F_Y(y) = F_X(\frac 2 \pi \arcsin y) =\frac 1 \pi \arcsin y + \frac 1 2 ~~~~~\b
 > **💡NOTE**: Arcsine distribution의 누적 분포 함수(CDF)는 $F(x) = \frac 2 \pi \arcsin(\sqrt x) = \frac {\arcsin(2x - 1)}{\pi} + \frac 1 2$ 이다. 이때, x는 구간 [0, 1]에서 만족하는데, 위 $F_Y(y)$의 경우 **Arcsine distribution**의 누적 분포 함수와 동일한 형태를 가지고 있으며, $0 < x < 1$ 인데, $y = 2x -1$ 이므로, $-1 < y< 1$ 에서 **Arcsine** 분포를 따른는 것을 알 수 있다.
 
 
-**Lemma 1.2**
+#### Lemma 1.2
 *The variance of* $mX + n$ with $X$ *a random variable and* $m \in \Bbb R^+_{/0}, n \in \Bbb R$ *is* $\rm{Var}[mX+n] = m^2\rm{Var}[X]$
 
-***Proof***. 임의의 확률 번수가 연속된 확률 밀도 함수 $f_X$를 따른다고 할때, <br/>기대값은 $\rm E[X] = \int_{-\inf}^{\inf} \cal f_X(x)dx$ 로 정의되며, <br/>분산은 $\rm{Var}[X] = \rm E[(X - \rm E[X])^2] = \rm E[X^2] - \rm E[X]^2$로 정의된다.
+***Proof***. 임의의 확률 번수가 연속된 확률 밀도 함수 $f_X$를 따른다고 할때, <br/>기대값은 $\rm E[X] = \int_{-\infty}^{\infty} \cal f_X(x)dx$ 로 정의되며, <br/>분산은 $\rm{Var}[X] = \rm E[(X - \rm E[X])^2] = \rm E[X^2] - \rm E[X]^2$로 정의된다.
 
 **따라서**, $\rm{Var}[mX + n] = \rm E[(mX + n)^2] - \rm E[mX + n]^2 = \rm E[m^2X^2 + 2mnX + n^2] - (m\rm E[X] +n)^2 = m^2(\rm E[X^2] - \rm E[X]^2) = m^2\rm{Var}[X]$
 
-**Lemma 1.3**
+#### Lemma 1.3
 *The variance of* $X \thicksim \rm {Arcsin}(a,b)$ is $\rm{Var}[X] = \frac 1 8 (b-a)^2$
 
 ***Proof.*** $Z \thicksim \rm {Arcsin}(0,1)$ 이면, $\rm{Var}[Z] = \frac 1 8$이고, $\rm E[Z] = \frac 1 2$ 임을 계산을 통해 구할 수 있다. 그리고, $\rm Var[Z] = \rm E[Z^2] - \rm E[Z]^2 = \rm E[Z^2] - \frac 1 4$임을 구할 수 있다. <br/>즉 분산을 구하기 위해선, $Z^2$의 기대값을 구하면 된다.
@@ -90,3 +92,79 @@ $$0 \cdot m + n = a ~~~~\therefore n = a \\ 1 \cdot m + n = b ~~~~\therefore m =
 $$Var[Z] = \frac 1 8$$
 $$m = b-a$$
 $$\therefore \rm{Var}[X] = \rm{Var}[m\cdot Z + n] = m^2\rm{Var}[Z] =  (b-a)^2 \cdot \frac {1} {8}$$
+
+
+#### [Lemma1.4](https://www.cs.cmu.edu/~cga/var/2281592.pdf)
+*For tow independent random variables* $X$ *and* $Y$
+$$\rm Var [X \cdot Y] = Var[X] \cdot Var[Y] + E[Y]^2 \cdot Var[X] + E[X]^2 \cdot Y$$
+
+***Proof:*** 
+  1. 두 확률 변수 $X$와 $Y$가 독립이라고 가정. 분산 정의 사용.
+  $$\text{Var} [X \cdot Y] = E[(X \cdot Y - E[X \cdot Y])^2] \cdots (1.1) \\
+  E[X \cdot Y] = E[X] \cdot E[Y] \cdots (1.2)$$
+
+  2. 독립성에 의해 전개하면
+  $$ \text{Var}[XY] = {E}[(XY - {E}[X] E[Y])^2] \\
+  =  E[X^2Y^2 - 2XY E[X] E[Y] +  E[X]^2 E[Y]^2] \\
+  =  E[X^2Y^2] - 2E[X]E[Y]E[XY] + E[X]^2E[Y]^2$$
+  $$= E[X^2Y^2] - E[X]^2E[Y]^2 ~~~~ \cdots (2.1) \\ \because E[XY] = E[X]E[Y]$$
+
+  3. 전개 2
+  $$E[X^2Y^2] = E[X^2]E[Y^2] ~~~~ \cdots (3.1)$$
+
+  4. 분산 기본 공식 응용
+  $$ \text{Var}[X] = E[X^2] - E[X]^2 \\ \therefore E[X^2] = \text{Var}[X] + E[X]^2$$
+  - $Y$도 마찬가지, $(3.1)$에 대입하면
+  5. (3.1)에 대입 후 정리
+  $$E[X^2Y^2] = (\text{Var}[X] + E[X]^2)(\text{Var}[Y] + E[Y]^2) \\ 
+  = \text{Var}[X]\text{Var}[Y] + \text{Var}[X]E[Y]^2 + E[X]^2\text{Var}[Y] + E[X]^2E[Y]^2 ~~~ \cdots (5.1)$$
+
+6. (2.1)에 대입하여 완성
+$$\text{Var}[XY] = E[X^2Y^2]-E[X]^2E[Y]^2\\
+= \text{Var}[X]\text{Var}[Y] + \text{Var}[X]E[Y]^2 + E[X]^2\text{Var}[Y] ~~~~ \because (5.1) $$
+
+#### [Theorem 1.5](https://www.cs.toronto.edu/~yuvalf/CLT.pdf)
+*Central Limit Theorem with Lindeberg's sufficient condition. Let* $X_k, k\in \Bbb N$ *be independent random variables with expected values* $E[X_k] = \mu_k$ *and variances* $\text{Var}[X_k] = \sigma_k$, *Posing* $s^2_n = \sum_{k=1}^n \sigma_k^2$. *If the* $X_k$ *satisfy the Lindenberge condition:*
+$$\lim_{n \rarr \infty} \frac 1 {s^2_n} \sum^n_{k=1} E[(X_k - \mu_k)^2 \cdot 1([X_k - \mu_k] > \epsilon s_n)] = 0$$
+
+
+- Central limit theorem: 임의의 확률 변수들의 합은 정규 분포를 따른 다는 것임.
+- 위 Lindeberge 조건을 따를 때 성립하며, 위 조건에서는 indicator를 사용해서 너무 큰 이상치가 분산에 지나치게 개입하지 않도록 방지한다. 
+
+$$\forall \epsilon > 0; S_n = \frac 1 {s_n} \sum_{k=1}^n(X_k - \mu_k) $$
+- 모든 양의 입실론에 대해서, 위 $S_n$은 n이 무한대로 갈때, `표준 정규 분포`에 수렴하게 된다.
+
+- 증명은 넘어가도록 함.
+
+#### Lemma 1.6
+*Given a Gaussian distributed random variable* $X \thicksim N(0,1)$ *and* $Y = \sin{\frac \pi 2 X}$ *we have* $Y \thicksim \text{Arcsin}(-1, 1)$
+
+[<img src="./imgs/lemma_fig1.png" height="200"/>](./imgs/lemma_fig1.png)
+
+***Proof.*** 
+$X \thicksim N(\mu, \sigma^2)$의, `확률 밀도 함수(pdf)`와 `누적 확률 함수(cdf)`는 아래 와 같다
+$$\text{PDF} = \frac 1 {\sigma \sqrt{2\pi}} e^{-\frac 1 2 (\frac {x - \mu} \sigma)^2}$$
+$$\text{CDF} = \Phi(\frac {x-\mu} \sigma)=\frac 1 2[1+\text{erf}(\frac {x - \mu} {\sigma \sqrt 2})]$$
+
+> **Cumulative distribution function**
+> - $\Phi(x) = \frac 1 {\sqrt{2\pi}} \int_{-\infty}^x e^{-{t^2}/2} dt$
+> - Error function: $\text{erf}(x) = \frac 1 {\sqrt{\pi}} \int_{-x}^x e^{-t^2} dt$ 
+>   - $N(0,0.5)$의 구간[-x,x] 사이 확률값을 반환
+
+
+$X \thicksim N(0, 1)$ 일때, 아래와 같이 근사할 수 있다 ($\alpha = 1.702, \beta=0.690$).
+$$F_X(x) = \frac 1 2 + \frac 1 2 \text{erf}(\frac x {\sqrt 2}) \\
+\approx (1 + \text{exp}(-\alpha \cdot x))^{-1} \\
+\approx \frac 1 2 + \frac 1 2 \tanh(\beta \cdot x)
+$$
+
+|[<img src="./imgs/lemma_approx.png" width="400"/>](./imgs/lemma_approx.png) <br/>**Compare Approx** |[<img src="./imgs/lemma_erf.png" width="400"/>](./imgs/lemma_erf.png) <br/>**F(x)** 0.5 + 0.5*erf(x/sqrt(2)) |
+|---|---|
+|[<img src="./imgs/lemma_approx_logistic.png" width="400"/>](./imgs/lemma_approx_logistic.png) <br/>**logistic** (1 + exp(-1.702x))^-1|[<img src="./imgs/lemma_approx_tanh.png" width="400"/>](./imgs/lemma_approx_tanh.png)<br/>**tanh** 0.5 + 0.5*erf(x/sqrt(2))|
+
+확률 변수 $Y \thicksim \sin (\frac \pi 2 X)$ 의 누적 확률 분포 함수(CDF)를 찾아내는 것이 목표이다. Lemma 1.1과 같은 방법으로 접근해야하지만, 정규 분포는 closed form이 없다. 따라서 `표준 정규 분포`의 99.7%를 차지하는 구간 [-3, 3]에 대해서 근사하고, 다른 부분은 무시한다.
+
+$$F_Y(y) = \Bbb P(\sin(\frac \pi 2 X) \leq y) = \Bbb P (X \leq \frac 2 \pi \arcsin y) \\
+
+= F_X(\frac 2 \pi \arcsin y)$$
+-- 모르게따 힘드라
