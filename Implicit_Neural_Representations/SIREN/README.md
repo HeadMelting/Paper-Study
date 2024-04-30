@@ -1,4 +1,5 @@
 # Summary
+[youtube](https://youtu.be/Q5g3p9Zwjrk?si=cxo0uor27dB-Pu8R)
 
 Implicit Neural Representations: 어떠한 신호(이미지, 영상, 음성 등)를 인공 신경망으로 학습된 파라미터를 사용한 수식으로 나타내 연속된 공간에 나타낸다? - pros: 메모리 효율적이며 그리드 해상도에 무관함. - limitations: 신호를 고차원 미분으로 나타내야하는데, representation이 완벽하지 않음 (정보 손실?)
 

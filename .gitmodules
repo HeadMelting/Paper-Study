@@ -1,3 +1,6 @@
 [submodule "Implicit_Neural_Representations/SIREN/siren"]
 	path = Implicit_Neural_Representations/SIREN/siren
 	url = https://github.com/vsitzmann/siren.git
+[submodule "Implicit_Neural_Representations/NeRV/NeRV"]
+	path = Implicit_Neural_Representations/NeRV/NeRV
+	url = https://github.com/haochen-rye/NeRV.git
