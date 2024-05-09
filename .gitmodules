@@ -4,3 +4,6 @@
 [submodule "Implicit_Neural_Representations/NeRV/NeRV"]
 	path = Implicit_Neural_Representations/NeRV/NeRV
 	url = https://github.com/haochen-rye/NeRV.git
+[submodule "Implicit_Neural_Representations/MetaSDF/metasdf"]
+	path = Implicit_Neural_Representations/MetaSDF/metasdf
+	url = https://github.com/vsitzmann/metasdf.git
