@@ -7,3 +7,6 @@
 [submodule "Implicit_Neural_Representations/MetaSDF/metasdf"]
 	path = Implicit_Neural_Representations/MetaSDF/metasdf
 	url = https://github.com/vsitzmann/metasdf.git
+[submodule "Implicit_Neural_Representations/IDM/IDM"]
+	path = Implicit_Neural_Representations/IDM/IDM
+	url = https://github.com/Ree1s/IDM
