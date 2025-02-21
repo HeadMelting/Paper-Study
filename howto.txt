@@ -1,0 +1,8 @@
+adb kill-server
+adb pair [ip1:port1]
+adb pair [ip2:port2]
+
+adb devices
+
+scrcpy -s ip1:port1
+scrcpy -s ip2:port2

@@ -10,3 +10,15 @@
 [submodule "Implicit_Neural_Representations/IDM/IDM"]
 	path = Implicit_Neural_Representations/IDM/IDM
 	url = https://github.com/Ree1s/IDM
+[submodule "Diffusion/DDPM/annotated_deep_learning_paper_implementations"]
+	path = Diffusion/DDPM/annotated_deep_learning_paper_implementations
+	url = https://github.com/labmlai/annotated_deep_learning_paper_implementations
+[submodule "Implicit_Neural_Representations/COMBINER/combiner"]
+	path = Implicit_Neural_Representations/COMBINER/combiner
+	url = https://github.com/cambridge-mlg/combiner
+[submodule "AnomalyDetection/MULDE-Multiscale-Log-Density-Estimation-via-Denoising-Score-Matching-for-Video-Anomaly-Detection"]
+	path = AnomalyDetection/MULDE-Multiscale-Log-Density-Estimation-via-Denoising-Score-Matching-for-Video-Anomaly-Detection
+	url = https://github.com/jakubmicorek/MULDE-Multiscale-Log-Density-Estimation-via-Denoising-Score-Matching-for-Video-Anomaly-Detection.git
+[submodule "MoCoDAD"]
+	path = MoCoDAD
+	url = https://github.com/aleflabo/MoCoDAD
